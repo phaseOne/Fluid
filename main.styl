@@ -1,0 +1,78 @@
+@import reset
+
+/* Options */
+grid-max-width = 1236px  // The max width of the grid
+grid-min-width = 768px   // The point when mobile kicks in
+columns = 12             // The number of columns in the grid
+gutter = 40%             // The amount of gutter from the column at max-width: either a px or % value
+
+/* Calculations */
+col-full-width = (1 / columns * 100)%
+gutter-width = (unit(gutter, '') / unit(grid-max-width, '') * 100)% if (unit(gutter) is px)
+gutter-width = (col-full-width * gutter) / 100 if (unit(gutter) is '%')
+
+colwidth()
+  -floor((arguments * col-full-width) - gutter-width)
+
+-floor(x)
+  floor(x * 100) / 100
+
+
+/* Static Classes */
+.container
+  padding-left 20px
+  padding-right 20px
+
+.row
+  clear both
+  width 100%
+  max-width 1236px
+  margin 0 auto
+  overflow hidden
+
+.col
+  margin-right -floor(gutter-width)
+  float left
+  position relative
+
+
+/* Column Widths */
+.col_1 {@extend .col; width: colwidth(1)}
+.col_2 {@extend .col; width: colwidth(2)}
+.col_3 {@extend .col; width: colwidth(3)}
+.col_4 {@extend .col; width: colwidth(4)}
+.col_5 {@extend .col; width: colwidth(5)}
+.col_6 {@extend .col; width: colwidth(6)}
+.col_7 {@extend .col; width: colwidth(7)}
+.col_8 {@extend .col; width: colwidth(8)}
+.col_9 {@extend .col; width: colwidth(9)}
+.col_10 {@extend .col; width: colwidth(10)}
+.col_11 {@extend .col; width: colwidth(11)}
+.col_12 {@extend .col; width: colwidth(12)}
+
+
+/* Prepends */
+.pre_1 {padding-left: colwidth(1)}
+.pre_2 {padding-left: colwidth(2)}
+.pre_3 {padding-left: colwidth(3)}
+.pre_4 {padding-left: colwidth(4)}
+.pre_5 {padding-left: colwidth(5)}
+.pre_6 {padding-left: colwidth(6)}
+.pre_7 {padding-left: colwidth(7)}
+.pre_8 {padding-left: colwidth(8)}
+.pre_9 {padding-left: colwidth(9)}
+.pre_10 {padding-left: colwidth(10)}
+.pre_11 {padding-left: colwidth(11)}
+
+/* Appends */
+.suf_1 {padding-right: colwidth(1)}
+.suf_2 {padding-right: colwidth(2)}
+.suf_3 {padding-right: colwidth(3)}
+.suf_4 {padding-right: colwidth(4)}
+.suf_5 {padding-right: colwidth(5)}
+.suf_6 {padding-right: colwidth(6)}
+.suf_7 {padding-right: colwidth(7)}
+.suf_8 {padding-right: colwidth(8)}
+.suf_9 {padding-right: colwidth(9)}
+.suf_10 {padding-right: colwidth(10)}
+.suf_11 {padding-right: colwidth(11)}
